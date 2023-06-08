@@ -23,7 +23,7 @@ export class AppComponent {
   constructor() {
 
     // Initializing the input validation
-    this.inputValue = new FormControl('', [Validators.required, Validators.min(1), Validators.max(50)]);
+    this.inputValue = new FormControl('', [Validators.required, Validators.min(1), Validators.max(7)]);
     this.myForm = new FormGroup({
       inputValue: this.inputValue
     });
