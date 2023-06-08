@@ -11,5 +11,6 @@ The frontend of the project is hosted on Vercel and backend on Render.
 
 **Assumptions:**
 1. There is only 1 coach which needs to be booked.
-2. I have not implemented any logic for the user to save the booked seat. Since there is no user authentication, once the user closes the website, the seat booked by the user is lost.
-3. Since, it is not mentioned, I have not looked into security aspect of the peoject.
+2. I have assumed that 5 seats are prebooked in this coach.
+3. I have not implemented any logic for the user to save the booked seat. Since there is no user authentication, once the user closes the website, the seat booked by the user is lost.
+4. Since, it is not mentioned, I have not looked into security aspect of the peoject.
