@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <div class="p-3 mb-2 bg-light text-dark">
+
+    <div>
+      <h1 class="h2" style="text-align: center;" >Unstop Train Booking</h1>
+    </div>
+
+    <!-- Input Form For the user to enter number of seats -->
+    <form (ngSubmit)="onSubmit()" *ngIf="!showDiv" [formGroup]="myForm">
+      <div>
+        <label for="selected_seats">Number of Seats:</label>
+      </div>
+      <small class="form-text text-muted">You can book upto 7 seats</small>
+      <div class="form-group">
+        <input
+          required="true"
+          class="form-control"
+          id="selected_seats"
+          type="number"
+          name="selected_seats"
+          formControlName="inputValue"
+        />
+        <small class="form-text text-muted"></small>
+
+        <!-- Validating the Input. The user must enter the number of seats and it should be less than 7. -->
+
+        <div *ngIf="inputValue.invalid && inputValue.touched" class="error-message">
+          <span *ngIf="inputValue.errors?.['required']">This field is required.</span>
+          <span *ngIf="inputValue.errors?.['max']">You can book up to 7 seats only.</span>
+        </div>
+      </div>
+      <div>
+
+        <!-- Submit button -->
+        <button class="btn btn-primary" type="submit" id="submit">Submit</button>
+      </div>
+    </form>
+
+    <!-- This depicts the seat arrangement -->
+    <h1 *ngIf="showDiv && !isFull" class="h4" style="text-align: center;" >Your seats are as shown below: </h1>
+
+    <div *ngIf="showDiv && !isFull" class="seat-container" id="seat-container" #seat_container>
+      <div class="seat" id="seat" *ngFor="let seat of all_seats"
+           [ngClass]="{ 'reserved-seats': seat.isReserved === true, 'available-seats': seat.isReserved === false}"
+           [ngStyle]="{'background-color':(seat.seat_number >= first_seat && seat.seat_number <= (inputValue.value+first_seat-1))?'lightblue':null}">
+            {{seat.seat_number}}
+      </div>
+    </div>
+
+    <!-- Display this if all the seats are full -->
+    <h4 *ngIf="isFull" class="h4" style="text-align: center;" >Sorry... All seats are full. </h4>
+
+  </div>
+</body>
+
+
+<!-- Color chart for the seat status -->
+<footer *ngIf="showDiv && !isFull">
+
+  <!-- Reserved Seats Color depiction -->
+  <p class="seat_manual">&nbsp;&nbsp;Reserved Seats:&nbsp;</p>
+  <div class="seat seat_manual reserved-seats"></div>
+  <br /><br />
+
+   <!-- Selected Seats Color depiction -->
+  <p class="seat_manual">&nbsp;&nbsp;&nbsp;&nbsp;Your Seats:&nbsp;</p>
+  <div class="seat seat_manual booked-seats"></div>
+  <br /><br />
+
+    <!-- Available Seats Color depiction -->
+  <p class="seat_manual">&nbsp;&nbsp;&nbsp;&nbsp;Available Seats:&nbsp;</p>
+  <div class="seat seat_manual available-seats"></div>
+</footer>
+</html>
