@@ -9,7 +9,7 @@ The /coach folder contains the frontend code and /Server folder contains the bac
 
 The frontend of the project is hosted on Vercel and backend on Render.
 
-**Assumptions:
+**Assumptions:**
 1. There is only 1 coach which needs to be booked.
 2. I have not implemented any logic for the user to save the booked seat. Since there is no user authentication, once the user closes the website, the seat booked by the user is lost.
 3. Since, it is not mentioned, I have not looked into security aspect of the peoject.
